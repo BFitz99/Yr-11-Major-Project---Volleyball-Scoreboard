@@ -1,7 +1,12 @@
-function fiveSet(){
-    console.log("hello")
-    var homeTeam = document.getElementById("home").innerHTML
-    var homeTeamReplace = document.getElementById("homeTeam").innerHTML
-    homeTeamReplace = homeTeam
-    location.replace("http://127.0.0.1:5500/HTML/ScoreBoard5.HTML")
+function enterFiveSet(){
+    var homeTeamName = Document.getElementById("homeTeamFive").value
+    var homeplayerOne = Document.getElementById("homePlayerOne").value
+    var homeplayerTwo = Document.getElementById("homePlayerTwo").value
+    var homeplayerThree = Document.getElementById("homePlayerThree").value
+    var homeplayerFour = Document.getElementById("homePlayerFour").value
+    var homeplayerFive = Document.getElementById("homePlayerFive").value
+    var homeplayerSix = Document.getElementById("homePlayerSix").value
+    var homeLibero = Document.getElementById("homePlayerLib").value
+
+    var awayTeamName = Document.getElementById("awayTeamFive").value
 }
