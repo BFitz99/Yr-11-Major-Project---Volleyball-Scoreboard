@@ -75,55 +75,58 @@ function onKeyUp(event){
     switch(keyCode){
         case 84:  //t key Home Sets goes up
             if (homeSetsWon < 3){
-                homeSetsWon = homeSetsWon + 1
-                document.getElementById("setsWon").innerHTML = homeSetsWon + " Sets " + awaySetsWon
-                if (homeSetsWon + awaySetsWon == 1){
-                    secondSetOn.style.display = "block";
-                    firstSetOn.style.display = "none";
-                    firstSet.style.display = "block";
-                }else if(homeSetsWon + awaySetsWon == 2){
-                    secondSetOn.style.display = "none";
-                    secondSet.style.display = "block";
-                    firstSet.style.display = "block";
-                    thirdSetOn.style.display = "block";
-                }else if(homeSetsWon + awaySetsWon == 3){
-                    if (homeSetsWon == 3){
-                        fourthSetOn.style.display = "none";
+                if (awaySetsWon !== 3){
+                    homeSetsWon = homeSetsWon + 1
+                    document.getElementById("setsWon").innerHTML = homeSetsWon + " Sets " + awaySetsWon
+                    if (homeSetsWon + awaySetsWon == 1){
+                        secondSetOn.style.display = "block";
+                        firstSetOn.style.display = "none";
+                        firstSet.style.display = "block";
+                    }else if(homeSetsWon + awaySetsWon == 2){
+                        secondSetOn.style.display = "none";
                         secondSet.style.display = "block";
                         firstSet.style.display = "block";
-                        thirdSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
+                        thirdSetOn.style.display = "block";
+                    }else if(homeSetsWon + awaySetsWon == 3){
+                        if (homeSetsWon == 3){
+                            fourthSetOn.style.display = "none";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            thirdSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                        }else{
+                            fourthSetOn.style.display = "block";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            thirdSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                        }
+                    }else if(homeSetsWon + awaySetsWon == 4){
+                        if (homeSetsWon == 3){
+                            fifthSetOn.style.display = "none";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            fourthSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                            fourthSet.style.display = "block";
+                        }else{
+                            fifthSetOn.style.display = "block";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            fourthSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                            fourthSet.style.display = "block";
+                        }
                     }else{
-                        fourthSetOn.style.display = "block";
-                        secondSet.style.display = "block";
-                        firstSet.style.display = "block";
-                        thirdSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
-                    }
-                }else if(homeSetsWon + awaySetsWon == 4){
-                    if (homeSetsWon == 3){
                         fifthSetOn.style.display = "none";
                         secondSet.style.display = "block";
                         firstSet.style.display = "block";
-                        fourthSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
-                        fourthSet.style.display = "block";
-                    }else{
-                        fifthSetOn.style.display = "block";
-                        secondSet.style.display = "block";
-                        firstSet.style.display = "block";
-                        fourthSetOn.style.display = "none";
+                        fifthSet.style.display = "block";
                         thirdSet.style.display = "block";
                         fourthSet.style.display = "block";
                     }
-                }else{
-                    fifthSetOn.style.display = "none";
-                    secondSet.style.display = "block";
-                    firstSet.style.display = "block";
-                    fifthSet.style.display = "block";
-                    thirdSet.style.display = "block";
-                    fourthSet.style.display = "block";
                 }
+                
             }
         break;
         case 71:  //g key Home Sets goes down
@@ -164,14 +167,23 @@ function onKeyUp(event){
         break;
         case 87:  //W Key Home score goes up
             if (homeSetsWon + awaySetsWon == 0){
-                homeScore = homeScore + 1
-                document.getElementById("firstSetOn").innerHTML = homeScore + " VS " + awayScore
-                document.getElementById("firstSet").innerHTML = homeScore + " VS " + awayScore
+                if (homeScore < 24){
+                    homeScore = homeScore + 1
+                }else if (homeScore - awayScore < 1){
+                    homeScore = homeScore + 1
+                }else{
+                    homeScore = homeScore + 1
+                    homeSetsWon = homeSetsWon + 1
+                    secondSetOn.style.display = "block";
+                    firstSetOn.style.display = "none";
+                    firstSet.style.display = "block";
+                } 
             }else if (homeSetsWon + awaySetsWon == 1){
                 homeScoreTwo = homeScoreTwo + 1
-                document.getElementById("secondSetOn").innerHTML = homeScoreTwo + " VS " + awayScoreTwo
-                document.getElementById("secondSet").innerHTML = homeScoreTwo + " VS " + awayScoreTwo
             }
+            document.getElementById("setsWon").innerHTML = homeSetsWon + " Sets " + awaySetsWon
+            document.getElementById("firstSetOn").innerHTML = homeScore + " VS " + awayScore
+            document.getElementById("firstSet").innerHTML = homeScore + " VS " + awayScore
         break;
         case 83:  //s Key Home score goes down
             homeScore = homeScore - 1
@@ -179,55 +191,58 @@ function onKeyUp(event){
         break;
         case 89:  //y key Away Sets goes up
             if (awaySetsWon < 3){
-            awaySetsWon = awaySetsWon + 1
-            document.getElementById("setsWon").innerHTML = homeSetsWon + " Sets " + awaySetsWon
-                if (homeSetsWon + awaySetsWon == 1){
-                    secondSetOn.style.display = "block";
-                    firstSetOn.style.display = "none";
-                    firstSet.style.display = "block";
-                }else if(homeSetsWon + awaySetsWon == 2){
-                    secondSetOn.style.display = "none";
-                    secondSet.style.display = "block";
-                    firstSet.style.display = "block";
-                    thirdSetOn.style.display = "block";
-                }else if(homeSetsWon + awaySetsWon == 3){
-                    if (awaySetsWon == 3){
-                        fourthSetOn.style.display = "none";
+                if (homeSetsWon !== 3){
+                    awaySetsWon = awaySetsWon + 1
+                    document.getElementById("setsWon").innerHTML = homeSetsWon + " Sets " + awaySetsWon
+                    if (homeSetsWon + awaySetsWon == 1){
+                        secondSetOn.style.display = "block";
+                        firstSetOn.style.display = "none";
+                        firstSet.style.display = "block";
+                    }else if(homeSetsWon + awaySetsWon == 2){
+                        secondSetOn.style.display = "none";
                         secondSet.style.display = "block";
                         firstSet.style.display = "block";
-                        thirdSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
+                        thirdSetOn.style.display = "block";
+                    }else if(homeSetsWon + awaySetsWon == 3){
+                        if (awaySetsWon == 3){
+                            fourthSetOn.style.display = "none";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            thirdSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                        }else{
+                            fourthSetOn.style.display = "block";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            thirdSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                        }
+                    }else if(homeSetsWon + awaySetsWon == 4){
+                        if (awaySetsWon == 3){
+                            fifthSetOn.style.display = "none";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            fourthSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                            fourthSet.style.display = "block";
+                        }else{
+                            fifthSetOn.style.display = "block";
+                            secondSet.style.display = "block";
+                            firstSet.style.display = "block";
+                            fourthSetOn.style.display = "none";
+                            thirdSet.style.display = "block";
+                            fourthSet.style.display = "block";
+                        }
                     }else{
-                        fourthSetOn.style.display = "block";
-                        secondSet.style.display = "block";
-                        firstSet.style.display = "block";
-                        thirdSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
-                    }
-                }else if(homeSetsWon + awaySetsWon == 4){
-                    if (awaySetsWon == 3){
                         fifthSetOn.style.display = "none";
                         secondSet.style.display = "block";
                         firstSet.style.display = "block";
-                        fourthSetOn.style.display = "none";
-                        thirdSet.style.display = "block";
-                        fourthSet.style.display = "block";
-                    }else{
-                        fifthSetOn.style.display = "block";
-                        secondSet.style.display = "block";
-                        firstSet.style.display = "block";
-                        fourthSetOn.style.display = "none";
+                        fifthSet.style.display = "block";
                         thirdSet.style.display = "block";
                         fourthSet.style.display = "block";
                     }
-                }else{
-                    fifthSetOn.style.display = "none";
-                    secondSet.style.display = "block";
-                    firstSet.style.display = "block";
-                    fifthSet.style.display = "block";
-                    thirdSet.style.display = "block";
-                    fourthSet.style.display = "block";
                 }
+                
             }
 
             break;
